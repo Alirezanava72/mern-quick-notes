@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
 const { Timestamp } = require('mongodb');
 
-const SALT_ROUNDS = 6;
+
 
 const noteSchema = new Schema({
     text: {type: String, required: true},
