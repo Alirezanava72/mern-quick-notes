@@ -27,11 +27,12 @@ const userSchema = new Schema({
   }
 });
 
-userSchema.pre('save', async function(next) {
-  // 'this' is the user document
+userSchema.pre('save', async function (next) {
+  // 'this' is the user doc
   if (!this.isModified('password')) return next();
-  // Replace the password with the computed hash
+  // update the password with the computed hash
   this.password = await bcrypt.hash(this.password, SALT_ROUNDS);
+  return next();
 });
 
 module.exports = mongoose.model('User', userSchema);
